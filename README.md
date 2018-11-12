@@ -1,6 +1,6 @@
 # Eyra
 
-Serialize/Deserializing ruby objects
+serializer for Ruby Objects
 
 ## Installation
 
