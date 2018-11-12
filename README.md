@@ -32,7 +32,7 @@ class MovieSerializer
   end
 end
 
-MovieSerialize.new(@movie).to_json # { movie: 'The fight club', year: 1999}
+MovieSerialize.new(@movie).to_json # { movie: 'The fight club', year: 1999,year_in_hex: "7cf" }
 ```
 
 
