@@ -1,9 +1,9 @@
-require "spec_helper"
+require 'spec_helper'
 require 'ostruct'
 
 class Movie
-  attr_accessor :title,:year
-  def initialize(title,year)
+  attr_accessor :title, :year
+  def initialize(title, year)
     @title = title
     @year = year
   end
@@ -11,8 +11,8 @@ end
 
 class MovieSerializer
   include Eyra
-  field :title,type: String
-  field :year,type: Integer
+  field :title, type: String
+  field :year, type: Integer
   field :year_in_hex, type: String
 
   dump_format :year_in_hex do |object|
@@ -21,9 +21,9 @@ class MovieSerializer
 end
 
 describe Eyra do
-  let(:dummy_movie) { Movie.new('The fight club', '1999')} 
+  let(:dummy_movie) { Movie.new('The fight club', '1999') }
 
-  it "has a version number" do
+  it 'has a version number' do
     expect(Eyra::VERSION).not_to be nil
   end
 
@@ -31,19 +31,19 @@ describe Eyra do
   it { expect(MovieSerializer.fields).to be_a(Array) }
 
   describe Eyra::Field do
-    it 'serialize strings'  do
-      field = Eyra::Field.new('title',type: String)
+    it 'serialize strings' do
+      field = Eyra::Field.new('title', type: String)
       expect(field.serialize(dummy_movie)).to eq('The fight club')
     end
 
-    it 'serialize integers'  do
-      field = Eyra::Field.new('year',type: Integer)
+    it 'serialize integers' do
+      field = Eyra::Field.new('year', type: Integer)
       expect(field.serialize(dummy_movie)).to eq(1999)
     end
   end
 
   describe 'Serializer' do
-    let(:serialize){ MovieSerializer.new(dummy_movie) }
+    let(:serialize) { MovieSerializer.new(dummy_movie) }
 
     it 'is a movie' do
       expect(serialize.object).to be_a(Movie)
@@ -57,7 +57,6 @@ describe Eyra do
       it 'Integer' do
         expect(serialize.year).to eq(1999)
       end
-
     end
 
     describe 'dump_format' do
